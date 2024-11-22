@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useState,} from 'react'
-import {Routes, Route, Navigate, useNavigate, useLocation} from 'react-router-dom'
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom'
 import Main from '../Main/Main'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
@@ -21,6 +21,7 @@ function App() {
   const closeModal = () => setActiveModal("");
   const navigate = useNavigate();
   const location = useLocation();
+
 
   const pageVariants = {
     initial: { opacity: 0, x: 0 },
