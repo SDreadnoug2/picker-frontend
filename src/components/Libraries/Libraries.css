@@ -1,0 +1,64 @@
+.libraries{
+    height: 80vh;
+    max-width: 100%;
+    font-family: "DotGothic16", sans-serif;
+    padding: 24px;
+}
+
+.libraries__button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.libraries__main{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.libraries__button{
+    font-size: 4vw;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: scale 0.4s cubic-bezier(0,.87,.3,1.01);
+}
+
+.libraries__button:hover{
+    scale: 105%;
+}
+
+.libraries__empty{
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.libraries__button-selected{
+    animation: selected 1s;
+    background-color: red;
+}
+
+@keyframes selected {
+    0%{
+        background-color: red;
+    }
+    5%{
+        background-color: black;
+    }
+    10%{
+        background-color: red;
+    }
+    15%{
+        background-color: black;
+    }
+    20%{
+        background-color: red;
+    }
+}

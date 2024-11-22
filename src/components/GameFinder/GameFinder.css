@@ -1,0 +1,29 @@
+.GameFinder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 16px;
+}
+
+.GameFinder__randomizer{
+    border-style: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.GameFinder__title{
+
+}
+
+.GameFinder__price{
+
+}
+
+.GameFinder__description{
+
+}
+
