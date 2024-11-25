@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
-const librarySelectionContext = React.createContext({
+const LibrarySelectionContext = React.createContext({
     librarySelection: null,
     setLibrarySelection: () => {},
 });
 
-export default librarySelectionContext;
+export default LibrarySelectionContext;

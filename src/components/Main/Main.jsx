@@ -9,18 +9,17 @@ function Main({navigate}) {
   return (
     
       <div className="main">
-            <h2 className='main__subtitle'>NEW GAME?</h2>
-        <h2 className="main__continue" onClick={handleButtonClick}>click to continue</h2>
+        <h2 className='main__subtitle'>NEW GAME?</h2>
+        <button type="button" className="main__continue" onClick={handleButtonClick}>click to continue</button>
         <AnimatePresence>
           <motion.img
             initial={{opacity: 0, y: 200}}
             animate={{opacity: 1, y: 0}}
             exit={{opacity: 0, y: -200}}
-          className='main__image' 
-          src={steamSVG} 
-          alt="steam logo"/>
+            className='main__image' 
+            src={steamSVG} 
+            alt="steam logo"/>
         </AnimatePresence>
-
       </div>
   )
 }

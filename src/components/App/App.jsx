@@ -7,22 +7,16 @@ import Footer from '../Footer/Footer'
 import Preloader from '../Preloader/Preloader'
 import About from '../About/About'
 import Libraries from '../Libraries/Libraries'
-import activeModalContext from '../../utils/activeModal'
 import GameFinder from '../GameFinder/GameFinder'
 import {AnimatePresence, motion} from "framer-motion";
-import librarySelectionContext from '../../utils/librarySelectionContext'
+import LibrarySelectionContext from '../../utils/LibrarySelectionContext'
 
 function App() {
-  const [activeModal, setActiveModal] = useState(null);
   const [librarySelection, setLibrarySelection] = useState(null);
   const [libraryGame, setLibraryGame] = useState({});
   const [storeGame, setStoreGame] = useState({});
-
-  const closeModal = () => setActiveModal("");
   const navigate = useNavigate();
   const location = useLocation();
-
-
   const pageVariants = {
     initial: { opacity: 0, x: 0 },
     animate: { opacity: 1, x: 0 },
@@ -41,6 +35,7 @@ function App() {
           description: "Half Life Description",
       })
   }
+
   const handleStoreSearch = () =>{
       /*api request for data*/
       setStoreGame({
@@ -53,51 +48,50 @@ function App() {
           description: "Fallout 4 Description",
       })
   }
-
+  
   return (
-    <librarySelectionContext.Provider value={{librarySelection, setLibrarySelection}}>
-      <activeModalContext.Provider value={{activeModal, setActiveModal, closeModal}}>
-        <div className='app'>
-        {activeModal === "about" && (
-            <motion.div
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.5 }}>
-              <About closeModal={closeModal}/> 
-            </motion.div>
-        )}
-          <Header navigate={navigate}/>
-          <AnimatePresence mode="wait">
-            <Routes location={location}> 
-              <Route
-                path="/"
-                element={
-                  <motion.div
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={pageVariants}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Main navigate={navigate} />
-                </motion.div>
-                }>
-              </Route>
-              <Route
-              path="libraries/*"    
-              element={<Libraries/>
-              }
+    <LibrarySelectionContext.Provider value={{librarySelection, setLibrarySelection}}>
+      <div className='app'>
+        <Header navigate={navigate}/>
+        <AnimatePresence mode="wait">
+          <Routes location={location}> 
+            <Route path="/about" element={
+              <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.5 }}>
+                <About/> 
+              </motion.div>}>
+            </Route>
+            <Route
+              path="/"
+              element={
+                <motion.div
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={pageVariants}
+                transition={{ duration: 0.5 }}
               >
-                <Route path="steamstore" element={<GameFinder search={() => handleLibrarySearch} gameInfo={libraryGame}/>}></Route>
-                <Route path="userlibrary" element={<GameFinder search={() => handleStoreSearch} gameInfo={storeGame}/>}></Route>
-              </Route>
-            </Routes>
-          </AnimatePresence>
-        </div>
-      </activeModalContext.Provider>
-    </librarySelectionContext.Provider>
+                <Main navigate={navigate} />
+              </motion.div>
+              }>
+            </Route>
+            <Route
+            path="libraries/*"    
+            element={<Libraries/>
+            }
+            >
+              <Route path="steamstore" element={<GameFinder search={handleLibrarySearch} gameInfo={libraryGame}/>}></Route>
+              <Route path="userlibrary" element={<GameFinder search={handleStoreSearch} gameInfo={storeGame}/>}></Route>
+            </Route>
+          </Routes>
+        </AnimatePresence>
+      </div>
+    </LibrarySelectionContext.Provider>
+
   )
 }
 
