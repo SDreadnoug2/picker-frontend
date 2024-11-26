@@ -1,8 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
-.app{
-  font-family: 'Helvetica', sans-serif;
+.app {
+  font-family: "Helvetica", sans-serif;
   display: flex;
   flex-direction: column;
   margin: 0;

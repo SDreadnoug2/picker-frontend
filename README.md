@@ -20,7 +20,6 @@ https://www.pickagame.app
 -- OR --
 https://pickagame.app
 
-
 If you would like to set up this project for yourself please follow these instructions:
 
 1. Via git, clone the repository (i.e. git clone https://github.com/SDreadnoug2/game-picker-frontend/)
@@ -31,7 +30,7 @@ NOTE
 If you would just like to run the project in browser without building, the script npm run dev
 can also be run to launch the app on a local host.
 
-This is obviously an open source project, and there is potential to build off of it, please let me know 
+This is obviously an open source project, and there is potential to build off of it, please let me know
 if you do!
 
 Nicholas

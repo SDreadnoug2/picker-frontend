@@ -1,14 +1,12 @@
-import { useState } from 'react'
-import './Preloader.css'
+import { useState } from "react";
+import "./Preloader.css";
 
 function Preloader() {
-
   return (
     <>
-      <div>
-      </div>
+      <div></div>
     </>
-  )
+  );
 }
 
-export default Preloader
+export default Preloader;
