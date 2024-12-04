@@ -10,6 +10,7 @@ import Libraries from "../Libraries/Libraries";
 import GameFinder from "../GameFinder/GameFinder";
 import { AnimatePresence, motion } from "framer-motion";
 import LibrarySelectionContext from "../../utils/LibrarySelectionContext";
+import { getRandomSteamGame } from "../../utils/api";
 
 function App() {
   const [librarySelection, setLibrarySelection] = useState(null);
@@ -39,18 +40,16 @@ function App() {
   };
 
   const handleStoreSearch = () => {
-    /*api request for data*/
-    setStoreGame({
-      /*hard coded for example usage*/
-      title: "Fallout 4",
-      images: [
-        "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/220/0000001864.600x338.jpg?t=1727742736",
-        "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/220/header.jpg?t=1727742736",
-        "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/220/0000001872.600x338.jpg?t=1727742736",
-      ],
-      price: "$59.99",
-      description: "Fallout 4 Description",
-    });
+    const game = getRandomSteamGame()
+      setStoreGame({
+      title: `${game.name}`,
+      images: game.screenshots,
+      price: game.price_overview.final_formatted,
+      description: game.about_the_game,
+      weblink: `https://store.steampowered.com/app/${game.steam_appid}`
+    })
+
+
   };
 
   return (
@@ -94,7 +93,7 @@ function App() {
                 path="steamstore"
                 element={
                   <GameFinder
-                    search={handleLibrarySearch}
+                    search={handleStoreSearch}
                     gameInfo={libraryGame}
                   />
                 }
@@ -102,7 +101,7 @@ function App() {
               <Route
                 path="userlibrary"
                 element={
-                  <GameFinder search={handleStoreSearch} gameInfo={storeGame} />
+                  <GameFinder search={handleLibrarySearch} gameInfo={storeGame} />
                 }
               ></Route>
             </Route>
