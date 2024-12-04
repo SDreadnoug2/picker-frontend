@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  font-family: "DotGothic16", sans-serif;
+  justify-content: space-between;
+  align-content: flex-start;
+  padding: 8px 16px 8px 16px;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+}
+
+.header__logo {
+  cursor: pointer;
+  margin: 0;
+  font-weight: 100;
+}
