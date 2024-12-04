@@ -14,7 +14,7 @@ function Navigation() {
         <li className="navigation__item">
           <a
             className="navigation__link"
-            href="https://github.com/SDreadnoug2/game-picker-frontend"
+            href="https://github.com/SDreadnoug2/picker-frontend"
             target="blank"
           >
             GITHUB
