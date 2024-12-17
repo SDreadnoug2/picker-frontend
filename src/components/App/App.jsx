@@ -14,6 +14,7 @@ import { getRandomSteamGame } from "../../utils/api";
 
 function App() {
   const [librarySelection, setLibrarySelection] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [libraryGame, setLibraryGame] = useState({});
   const [storeGame, setStoreGame] = useState({});
   const navigate = useNavigate();
@@ -39,18 +40,27 @@ function App() {
     });
   };
 
-  const handleStoreSearch = () => {
-    const game = getRandomSteamGame()
+  const handleStoreSearch = async () => {
+    setIsLoading(true);
+    let game = null;
+    try{
+      game = await getRandomSteamGame()
+  } catch (error) {
+      console.error("Issue setting store game.", error);
+  } finally {
+      console.log(game);
       setStoreGame({
-      title: `${game.name}`,
-      images: game.screenshots,
-      price: game.price_overview.final_formatted,
-      description: game.about_the_game,
-      weblink: `https://store.steampowered.com/app/${game.steam_appid}`
-    })
-
-
+        title: game?.name || "Unknown Title",
+        images: game?.screenshots?.map(image => image.path_thumbnail)|| [],
+        price: game?.price_overview?.final_formatted || "Unknown Price",
+        description: game?.short_description,
+        weblink: `https://store.steampowered.com/app/${game?.steam_appid}`
+      })
+      setIsLoading(false);
+    }
+    console.log(storeGame.title, storeGame.price);
   };
+
 
   return (
     <LibrarySelectionContext.Provider
@@ -94,14 +104,15 @@ function App() {
                 element={
                   <GameFinder
                     search={handleStoreSearch}
-                    gameInfo={libraryGame}
+                    gameInfo={storeGame}
+                    isLoading={isLoading}
                   />
                 }
               ></Route>
               <Route
                 path="userlibrary"
                 element={
-                  <GameFinder search={handleLibrarySearch} gameInfo={storeGame} />
+                  <GameFinder isLoading={isLoading} search={handleLibrarySearch} gameInfo={storeGame} />
                 }
               ></Route>
             </Route>

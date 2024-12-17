@@ -5,7 +5,7 @@ function Header({ navigate }) {
   return (
     <div className="header">
       <h2 className="header__logo" onClick={() => navigate("/")}>
-        GAME PICKER
+        PICKAGAME.app
       </h2>
       <Navigation />
     </div>
