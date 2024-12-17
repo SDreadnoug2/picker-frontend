@@ -1,15 +1,14 @@
 import "./GameFinder.css";
 import ImageCarousel from "../ImageCarousel/ImageCarousel";
 import { useContext, useEffect, useState } from "react";
-function GameFinder({ gameInfo, search }) {
-  if (!gameInfo) {
+function GameFinder({ search, gameInfo, isLoading }) {
+  if (isLoading) {
     return (
       <div className="game-finder">
         <h2 className="game-finder__title">Loading...</h2>
       </div>
     );
   }
-
   return (
     <div className="game-finder">
       {!gameInfo || !gameInfo.title ? (

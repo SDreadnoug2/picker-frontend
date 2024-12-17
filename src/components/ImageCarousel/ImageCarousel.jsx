@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ImageCarousel.css";
 
 const ImageCarousel = ({ images }) => {
+  console.log(images);
   const [imageIndex, setImageIndex] = useState(0);
   //. to have a current index with useSelect
   const nextImage = () =>
@@ -19,7 +20,7 @@ const ImageCarousel = ({ images }) => {
         alt={`Slide ${imageIndex + 1}`}
         className="carousel__image"
       />
-      <button onClick={prevImage} className="carousel__button next"></button>
+      <button onClick={nextImage} className="carousel__button next"></button>
     </div>
   );
 };

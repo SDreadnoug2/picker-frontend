@@ -14,5 +14,6 @@ export function getRandomSteamGame() {
     return checkResponse(res);
   }).then((data) => {
     console.log(data);
+    return data;
   })
 }
