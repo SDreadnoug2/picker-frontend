@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "https://localhost:3001";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -16,4 +16,8 @@ export function getRandomSteamGame() {
     console.log(data);
     return data;
   })
+}
+
+export function login() {
+  window.location.href = `${baseUrl}/auth/login`;
 }

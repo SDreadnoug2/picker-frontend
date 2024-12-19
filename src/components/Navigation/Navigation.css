@@ -14,10 +14,10 @@
   margin: 0;
 }
 
-.navigation__link {
+.header__link {
   text-decoration: none;
 }
-.navigation__link:visited {
+.header__link:visited {
   text-decoration: none;
   color: white;
 }
@@ -26,6 +26,12 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   transition: border-bottom 0.2s ease-in-out;
+}
+
+.navigation__image{
+  width: 16px;
+  height: 16px;
+  
 }
 
 .navigation__item:active {

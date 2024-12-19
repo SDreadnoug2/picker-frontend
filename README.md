@@ -7,12 +7,12 @@ or for those who have expansive libraries, play games they haven't thought of in
 The frontend side's technologies feature Framer Motion for page transitions, and is entirely built
 using the React framework, and was set up using vite and npm.
 
-The backend is still currently in development, but will use a mongodb to store steam's current games' list,
+The backend is still currently in development, but will use mongodb to store steam's current games' list,
 and express to help interact with the user when accessing their steam library.
 It is being hosted via nginx on a remote server using google cloud's VMs.
 
-Speaking of user interaction, this will be my first introduction to the implementation of OAUTH, which will be utilized
-to speed up users' access to their library, without having to share their password with gamepicker. Epic!!
+Speaking of user interaction, this will be my first introduction to the implementation of openID, which will be utilized
+to speed up users' access to their library, without having to share their password with gamepicker.
 
 At any rate, the frontend of the site is currently being hosted at both:
 

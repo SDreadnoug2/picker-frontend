@@ -3,6 +3,7 @@
   flex-direction: row;
   font-family: "DotGothic16", sans-serif;
   justify-content: space-between;
+  align-items: center;
   align-content: flex-start;
   padding: 8px 16px 8px 16px;
   background-color: black;
@@ -10,8 +11,44 @@
   font-size: 10px;
 }
 
+.header__list{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.header__item{
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    transition: border-bottom 0.2s ease-in-out;
+}
+
+.header__item:visited {
+  text-decoration: none;
+  color: white;
+}
+
+
+.header__item:active {
+  animation: clicked 0.2s ease-in-out;
+}
+
+.header__item:hover {
+  transform: translateY(-2px);
+}
+
+
 .header__logo {
   cursor: pointer;
   margin: 0;
   font-weight: 100;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.header__user{
+  flex-grow: 0;
 }
