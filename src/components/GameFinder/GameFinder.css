@@ -10,16 +10,42 @@
 
 .game-finder__randomizer {
   border-style: none;
-  background-color: black;
+  background-color: white;
+  border-width: 130%;
+  color: black;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 42px;
+}
+
+.game-finder__randomizer:hover {
+  border-style: none;
+  background-color: red;
+  border-width: 130%;
   color: white;
   cursor: pointer;
+  transform: translateY(-3px);
 }
 
-.game-finder__title {
+.game-finder__title{
+  color:white;
 }
 
+.game-finder__game_link {
+  color: white;
+}
+
+.game-finder__game_link:visited {
+  text-decoration: none;
+  color: white;
+}
 .game-finder__price {
+  color: white;
 }
 
 .game-finder__description {
+  color: white;
+  text-align: center;
+  margin: 24px;
+  max-width: 50%;
 }

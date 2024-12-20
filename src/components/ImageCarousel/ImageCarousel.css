@@ -4,14 +4,20 @@
   align-items: center;
   justify-content: center;
   margin: auto;
+  width: 100%;
 }
 
 .carousel__image {
   transition: opacity 0.5s ease-in-out;
   height: 300px;
-  object-fit: cover;
-  width: auto;
+  object-fit: contain;
+  width: 100%;
   display: block;
+}
+
+.arousel__images_container{
+  width: 100%;
+  object-fit: contain;
 }
 
 .carousel__button {
@@ -27,6 +33,7 @@
   width: 40px;
   height: 40px;
   transition: transform 0.2s ease-in-out;
+  margin: 24px;
 }
 
 .prev {

@@ -21,11 +21,14 @@ const ImageCarousel = ({images}) => {
   return (
     <div className="carousel">
       <button onClick={prevImage} className="carousel__button prev"></button>
-      <img
-        src={images[imageIndex]}
-        alt={`Slide ${imageIndex + 1}`}
-        className={(direction === "right") ? "carousel__image slide_right": "carousel__image slide_left"}
-      />
+      <div className="carousel__images_container">
+        <img
+          src={images[imageIndex]}
+          alt={`Slide ${imageIndex + 1}`}
+          className={(direction === "right") ? "carousel__image slide_right": "carousel__image slide_left"}
+        />
+      </div>
+ 
       <button onClick={nextImage} className="carousel__button next"></button>
     </div>
   );
