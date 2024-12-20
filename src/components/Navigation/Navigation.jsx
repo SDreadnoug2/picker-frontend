@@ -7,7 +7,6 @@ function Navigation() {
 
   const userData = useContext(UserDataContext);
   const {isLoggedIn, logIn, logOut} = useContext(LoggedInContext);
-  console.log(userData);
   return (
     <nav className="navigation">
       <ul className="navigation__list">

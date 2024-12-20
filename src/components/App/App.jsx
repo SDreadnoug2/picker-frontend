@@ -4,16 +4,17 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Preloader from "../Preloader/Preloader";
 import About from "../About/About";
 import Libraries from "../Libraries/Libraries";
 import GameFinder from "../GameFinder/GameFinder";
 import { AnimatePresence, motion } from "framer-motion";
 import LibrarySelectionContext from "../../contexts/LibrarySelectionContext";
-import { getRandomSteamGame, login } from "../../utils/api";
+import { getRandomSteamGame, getRandomUserGame, login } from "../../utils/api";
 import Cookies from "js-cookie";
 import { UserDataContext } from "../../contexts/userDataContext";
 import { LoggedInContext } from "../../contexts/LoggedInContext";
+import isLoadingContext from "../../contexts/isLoadingContext";
+
 function App() {
   const [librarySelection, setLibrarySelection] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,20 +53,38 @@ function App() {
     setIsLoggedIn(false);
   }
 
-  const handleLibrarySearch = () => {
+  function formatPlayTime (time) {
+    let message;
+    if(time === 0){
+      message = 'Total Playtime: Never even opened it!'
+    }
+    if(time > 60) {
+      let hours = Math.floor(time / 60);
+      message = `Total Playtime: ${hours} hours`;
+
+    } if(time > 0 && time < 60) {
+      message =  `Total Playtime: ${time} minutes`;
+    }
+    return message;
+  }
+
+  const handleLibrarySearch = async () => {
     setIsLoading(true);
     let game = null;
     try{
-      //game = await 
-    } catch (error) {
-      console.error("Issue fetching library game:", error);
-    } finally {
+      game = await getRandomUserGame(userData.steamID)
+      const formattedPlayTime = formatPlayTime(game?.playTime);
       setLibraryGame({
         title: game?.name || "Unknown Title",
         images: game?.screenshots?.map(image => image.path_thumbnail)|| [],
         description: game?.short_description,
+        playTime: formattedPlayTime,
         weblink: `https://store.steampowered.com/app/${game?.steam_appid}`
       });
+    } catch (error) {
+      console.error("Issue fetching library game:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -77,7 +96,6 @@ function App() {
   } catch (error) {
       console.error("Issue setting store game.", error);
   } finally {
-      console.log(game);
       setStoreGame({
         title: game?.name || "Unknown Title",
         images: game?.screenshots?.map(image => image.path_thumbnail)|| [],
@@ -87,73 +105,79 @@ function App() {
       })
       setIsLoading(false);
     }
-    console.log(storeGame.title, storeGame.price);
   };
 
-  console.log(isLoggedIn);
+
 
   return (
-    <LoggedInContext.Provider value = {{isLoggedIn, setIsLoggedIn, logIn: handleUserLogIn, logOut: handleUserLogOut}}>
-      <UserDataContext.Provider value={userData}>
-        <LibrarySelectionContext.Provider
-          value={{ librarySelection, setLibrarySelection }}
-        >
-          <div className="app">
-            <Header navigate={navigate}/>
-            <AnimatePresence mode="wait">
-              <Routes location={location}>
-                <Route
-                  path="/about"
-                  element={
-                    <motion.div
-                      variants={pageVariants}
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                      transition={{ duration: 0.5 }}
-                    >
-                      <About />
-                    </motion.div>
-                  }
-                ></Route>
-                <Route
-                  path="/"
-                  element={
-                    <motion.div
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                      variants={pageVariants}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <Main navigate={navigate} />
-                    </motion.div>
-                  }
-                ></Route>
-                <Route path="libraries/*" element={<Libraries />}>
+    <isLoadingContext.Provider value = {{isLoading, setIsLoading}}>
+      <LoggedInContext.Provider value = {{isLoggedIn, setIsLoggedIn, logIn: handleUserLogIn, logOut: handleUserLogOut}}>
+        <UserDataContext.Provider value={userData}>
+          <LibrarySelectionContext.Provider
+            value={{ librarySelection, setLibrarySelection }}
+          >
+            <div className="app">
+              <Header navigate={navigate}/>
+              <AnimatePresence mode="wait">
+                <Routes location={location}>
                   <Route
-                    path="steamstore"
+                    path="/about"
                     element={
-                      <GameFinder
-                        search={handleStoreSearch}
-                        gameInfo={storeGame}
-                        isLoading={isLoading}
-                      />
+                      <motion.div
+                        variants={pageVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={{ duration: 0.5 }}
+                      >
+                        <About />
+                      </motion.div>
                     }
                   ></Route>
                   <Route
-                    path="userlibrary"
+                    path="/"
                     element={
-                      <GameFinder isLoading={isLoading} search={handleLibrarySearch} gameInfo={libraryGame} />
+                      <motion.div
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={pageVariants}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Main navigate={navigate} />
+                      </motion.div>
                     }
                   ></Route>
-                </Route>
-              </Routes>
-            </AnimatePresence>
-          </div>
-        </LibrarySelectionContext.Provider>
-      </UserDataContext.Provider>
-    </LoggedInContext.Provider>
+                  <Route path="libraries/*" element={<Libraries />}>
+                    <Route
+                      path="steamstore"
+                      element={
+                        <GameFinder
+                          librarySelection={librarySelection}
+                          search={handleStoreSearch}
+                          gameInfo={storeGame}
+                          isLoading={isLoading}
+                        />
+                      }
+                    ></Route>
+                    <Route
+                      path="userlibrary"
+                      element={
+                        <GameFinder 
+                        librarySelection={librarySelection} 
+                        isLoading={isLoading} 
+                        search={handleLibrarySearch} 
+                        gameInfo={libraryGame} />
+                      }
+                    ></Route>
+                  </Route>
+                </Routes>
+              </AnimatePresence>
+            </div>
+          </LibrarySelectionContext.Provider>
+        </UserDataContext.Provider>
+      </LoggedInContext.Provider>
+    </isLoadingContext.Provider>
   );
 }
 

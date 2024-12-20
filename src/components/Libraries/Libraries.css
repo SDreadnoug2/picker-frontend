@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .libraries__main {
@@ -17,15 +17,18 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+  margin: 16px;
+  background-color: black;
 }
 
 .libraries__button {
-  font-size: 4vw;
+  font-size: 6vw;
   border: none;
   background-color: black;
   color: white;
   cursor: pointer;
   transition: scale 0.4s cubic-bezier(0, 0.87, 0.3, 1.01);
+  width: 100%;
 }
 
 .libraries__button:hover {

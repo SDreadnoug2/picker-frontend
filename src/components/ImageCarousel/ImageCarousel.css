@@ -52,3 +52,36 @@
 .next:active {
   transform: translateX(5px) rotate(-90deg);
 }
+
+.slide__right{
+  animation: 0.2s ease-in-out right;
+}
+
+.slide__left{
+  animation: 0.2s ease-in-out left;
+}
+
+
+@keyframes right {
+  0%{
+    transform: translateX(0px)
+  }
+  50%{
+    transform: translateX(20px)
+  }
+  100%{
+    transform: translateX(0px)
+  }
+}
+
+@keyframes left {
+  0%{
+    transform: translateX(0px)
+  }
+  50%{
+    transform: translateX(-20px)
+  }
+  100%{
+    transform: translateX(0px)
+  }
+}

@@ -11,14 +11,11 @@ function Libraries() {
     setLibrary(lib);
     navigate(lib);
   };
-
   const outletVariants = {
     initial: { opacity: 1, x: 20 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 1, x: 20 },
   };
-  //you could have an algorithm that would allow people to specify what kind of game they'd want,
-  // but then you'd have to check if you can request that sort of info via the API.
 
   return (
     <motion.div
@@ -58,18 +55,7 @@ function Libraries() {
         </div>
       ) : (
         <div className="libraries__main">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              variants={outletVariants}
-              transition={{ duration: 0.3 }}
-            >
               <Outlet />
-            </motion.div>
-          </AnimatePresence>
         </div>
       )}
     </motion.div>

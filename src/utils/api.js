@@ -18,6 +18,18 @@ export function getRandomSteamGame() {
   })
 }
 
+export function getRandomUserGame(userId) {
+  console.log(userId);
+  return fetch(`${baseUrl}/userLibrary/random?userID=${userId}`, {
+    method: "GET",
+  }).then((res) => {
+    return checkResponse(res);
+  }).then((data) => {
+    console.log(data);
+    return data;
+  })
+}
+
 export function login() {
   window.location.href = `${baseUrl}/auth/login`;
 }

@@ -16,7 +16,7 @@ function Header({navigate}) {
         </li>
       </ul>
       <h2 className="header__logo" onClick={() => navigate("/")}>
-        PICKAGAME.app
+        PICKAGAME
       </h2>
       <Navigation className="header__user"/>
     </div>

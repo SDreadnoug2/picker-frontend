@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./ImageCarousel.css";
+import isLoadingContext from "../../contexts/isLoadingContext";
 
-const ImageCarousel = ({ images }) => {
-  console.log(images);
+const ImageCarousel = ({images}) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [direction, setDirection] = useState(null);
+  const {setIsLoading} = useContext(isLoadingContext);
   //. to have a current index with useSelect
-  const nextImage = () =>
+  const nextImage = () =>{
     setImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  const prevImage = () =>
+    setDirection("right");
+  }
+
+  const prevImage = () => {
     setImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  // binding so that onclick on one of the buttons, it goes left, or right.
-  // display that index's source as the image source.
+    setDirection("left");
+  }
+
 
   return (
     <div className="carousel">
@@ -18,7 +24,7 @@ const ImageCarousel = ({ images }) => {
       <img
         src={images[imageIndex]}
         alt={`Slide ${imageIndex + 1}`}
-        className="carousel__image"
+        className={(direction === "right") ? "carousel__image slide_right": "carousel__image slide_left"}
       />
       <button onClick={nextImage} className="carousel__button next"></button>
     </div>
