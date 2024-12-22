@@ -7,14 +7,11 @@ or for those who have expansive libraries, play games they haven't thought of in
 The frontend side's technologies feature Framer Motion for page transitions, and is entirely built
 using the React framework, and was set up using vite and npm.
 
-The backend is still currently in development, but will use mongodb to store steam's current games' list,
-and express to help interact with the user when accessing their steam library.
-It is being hosted via nginx on a remote server using google cloud's VMs.
+The backend is here: https://github.com/SDreadnoug2/game-picker-backend
 
-Speaking of user interaction, this will be my first introduction to the implementation of openID, which will be utilized
-to speed up users' access to their library, without having to share their password with gamepicker.
+Speaking of user interaction, this will be my first introduction to the implementation of openID, which will be utilized to speed up users' access to their library, without having to share their password with gamepicker.
 
-At any rate, the frontend of the site is currently being hosted at both:
+The site is currently being hosted at both:
 
 https://www.pickagame.app
 -- OR --
@@ -30,7 +27,6 @@ NOTE
 If you would just like to run the project in browser without building, the script npm run dev
 can also be run to launch the app on a local host.
 
-This is obviously an open source project, and there is potential to build off of it, please let me know
-if you do!
+Please let me know if there's any way I could enhance this project, and feel free to fork :)
 
 Nicholas
