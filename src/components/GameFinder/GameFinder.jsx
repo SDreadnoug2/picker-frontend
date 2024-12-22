@@ -1,9 +1,9 @@
 import "./GameFinder.css";
 import ImageCarousel from "../ImageCarousel/ImageCarousel";
 import { useContext, useEffect, useState } from "react";
-
+import { LoggedInContext } from "../../contexts/LoggedInContext";
 function GameFinder({ librarySelection, search, gameInfo, isLoading }) {
-  console.log(gameInfo.playtime);
+  const {isLoggedIn, logIn} = useContext(LoggedInContext);
   if (isLoading) {
     return (
       <div className="game-finder">
@@ -11,6 +11,15 @@ function GameFinder({ librarySelection, search, gameInfo, isLoading }) {
       </div>
     );
   }
+
+  if(!isLoggedIn && librarySelection === "userlibrary"){
+    return (
+      <div className="game-finder">
+        <button type="button" onClick={logIn} className="game-finder__randomizer">Please Login first!</button>
+    </div>
+    )
+  }
+
   return (
     <div className="game-finder">
       {!gameInfo || !gameInfo.title ? (
@@ -23,7 +32,7 @@ function GameFinder({ librarySelection, search, gameInfo, isLoading }) {
         </button>
       ) : (
         <>
-          <ImageCarousel classNam images={gameInfo.images} />
+          <ImageCarousel images={gameInfo.images} />
           <a href={gameInfo.weblink} target="blank" className="game-finder__game_link">{gameInfo.title}</a>
           {window.location.pathname === "/libraries/steamstore" && 
           ( <h3 className="game-finder__price">{gameInfo.price}</h3>)}

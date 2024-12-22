@@ -1,8 +1,11 @@
 .libraries {
-  height: 80vh;
+  height: 95%;
   max-width: 100%;
   font-family: "DotGothic16", sans-serif;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .libraries__button-container {
@@ -45,6 +48,10 @@
 .libraries__button-selected {
   animation: selected 1s;
   background-color: red;
+}
+
+.libraries__gamefinder{
+  width: 100%;
 }
 
 @keyframes selected {

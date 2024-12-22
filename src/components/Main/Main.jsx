@@ -7,7 +7,6 @@ function Main({ navigate }) {
 
   return (
     <div className="main">
-      <h2 className="main__subtitle">NEW GAME?</h2>
       <button
         type="button"
         className="main__continue"

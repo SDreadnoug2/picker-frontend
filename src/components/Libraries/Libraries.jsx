@@ -1,64 +1,64 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect,} from "react";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import "./Libraries.css";
 import { AnimatePresence, motion } from "framer-motion";
-function Libraries() {
-  const [library, setLibrary] = useState(null);
+import LibrarySelectionContext from "../../contexts/LibrarySelectionContext";
+import isLoadingContext from "../../contexts/isLoadingContext";
+import gameContext from "../../contexts/gameContext";
+import GameFinder from "../GameFinder/GameFinder";
+function Libraries({handleStoreSearch, handleLibrarySearch}) {
+  const {librarySelection, setLibrarySelection} = useContext(LibrarySelectionContext);
+  const {isLoading} = useContext(isLoadingContext);
+  const {libraryGame, storeGame} = useContext(gameContext);
   const navigate = useNavigate();
-  const location = useLocation();
+  //const location = useLocation();
 
   const handleLibraryClick = (lib) => {
-    setLibrary(lib);
+    setLibrarySelection(lib);
     navigate(lib);
   };
-  const outletVariants = {
-    initial: { opacity: 1, x: 20 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 1, x: 20 },
-  };
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="libraries"
-    >
-      <div className="libraries__button-container">
+    <div className="libraries">
         <button
           onClick={() => handleLibraryClick("userlibrary")}
           type="button"
           className={
-            library === "userlibrary"
+            librarySelection === "userlibrary"
               ? "libraries__button libraries__button-selected"
               : "libraries__button"
           }
-        >
-          Your Library
+        >Your Library
         </button>
         <button
           onClick={() => handleLibraryClick("steamstore")}
           type="button"
           className={
-            library === "steamstore"
+            librarySelection === "steamstore"
               ? "libraries__button libraries__button-selected"
               : "libraries__button"
           }
-        >
-          Steam Store
+        >Steam Store
         </button>
-      </div>
-      {library === null ? (
+      {librarySelection === "userlibrary" ? (
+          <GameFinder 
+          className="libraries__gamefinder"
+          librarySelection={librarySelection} 
+          isLoading={isLoading} 
+          search={handleLibrarySearch} 
+          gameInfo={libraryGame} />
+      ) : librarySelection === "steamstore" ? (
+          <GameFinder
+          className="libraries__gamefinder"
+          librarySelection={librarySelection}
+          search={handleStoreSearch}
+          gameInfo={storeGame}
+          isLoading={isLoading} />
+      ) : (
         <div className="libraries__empty">
           <h2 className="libraries__empty-text">Please select a library.</h2>
         </div>
-      ) : (
-        <div className="libraries__main">
-              <Outlet />
-        </div>
       )}
-    </motion.div>
+    </div>
   );
 }
 

@@ -17,14 +17,16 @@ function About() {
         </button>
         <h1 className="about__title">What is Game Picker?</h1>
         <p className="about__text">
-          Game picker was designed for those moments when you're sitting there,
-          starting at your steam library, and have no clue what to play next. It
-          looks at the games you have available, and picks one at random for you
-          to get back into. You also have the ability to find new games, you can
-          switch between your steam library and the steam store with the gear
-          icon on the splash page! The code for this site is also available via
-          the github link here, or at the top of the page. This app was designed
-          in React, and uses the Steam API.
+          Something new or something old, gamepicker's here to help. This app utilizes steam's API
+          to find games either in your library, or on the steam store to try our or experience again.
+          It'll even let you know if you've never even launched something in your library!
+          The app was built in react, and utilizes framer motion, and the "passport-steam" repo on Github, by Liam Curry in order
+          to store your steamID to request a list of games from your library. The server and site don't process or store any of your personal
+          steam info, only your steamID, username, and avatar gets saved as a cookie in your browser, which is then deleted on log out.
+          Please follow up with me on Github if you come across any issues.
+          Hope you find something new!
+          <br></br>
+          P.S. A more mobile friendly site is in the works.
         </p>
         <p className="about__subtext">Nicholas</p>
       </div>

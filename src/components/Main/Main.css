@@ -4,7 +4,7 @@
   line-height: 0.9;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 80%;
 }
 
 .main__find {
@@ -31,10 +31,27 @@
   transition: transform 0.1s ease-in-out;
 }
 
-.main__continue:hover {
-  transform: translateY(-5px);
-  color: aqua;
+.main__continue {
+  border-style: none;
+  background-color: white;
+  border-width: 130%;
+  color: black;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  font-size: 42px;
 }
+
+.main__continue:hover {
+  border-style: none;
+  background-color: red;
+  border-width: 130%;
+  color: white;
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+
+
 
 .main__image {
   max-width: 20%;

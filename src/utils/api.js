@@ -13,7 +13,6 @@ export function getRandomSteamGame() {
   }).then((res) => {
     return checkResponse(res);
   }).then((data) => {
-    console.log(data);
     return data;
   })
 }
@@ -25,7 +24,6 @@ export function getRandomUserGame(userId) {
   }).then((res) => {
     return checkResponse(res);
   }).then((data) => {
-    console.log(data);
     return data;
   })
 }
