@@ -4,8 +4,8 @@
   font-family: "DotGothic16", sans-serif;
   justify-content: space-between;
   align-items: center;
-  align-content: flex-start;
   padding: 8px 16px 8px 16px;
+  margin: 8px;
   background-color: black;
   color: white;
   font-size: 10px;
@@ -24,6 +24,7 @@
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
     transition: border-bottom 0.2s ease-in-out;
+    align-self: center;
 }
 
 .header__item:visited {
@@ -40,13 +41,15 @@
   transform: translateY(-2px);
 }
 
-
 .header__logo {
   cursor: pointer;
   margin: 0;
   font-weight: 100;
-  text-align: center;
   flex-grow: 1;
+}
+
+.header__link{
+  margin: 0;
 }
 
 .header__user{

@@ -36,6 +36,7 @@
 
 .libraries__button:hover {
   scale: 105%;
+  background-color: rgb(68, 102, 255);
 }
 
 .libraries__empty {
@@ -47,7 +48,7 @@
 
 .libraries__button-selected {
   animation: selected 1s;
-  background-color: red;
+  background-color: rgb(252, 91, 91);
 }
 
 .libraries__gamefinder{
@@ -56,18 +57,18 @@
 
 @keyframes selected {
   0% {
-    background-color: red;
+    background-color: rgb(252, 91, 91);;
   }
   5% {
     background-color: black;
   }
   10% {
-    background-color: red;
+    background-color: rgb(252, 91, 91);;
   }
   15% {
     background-color: black;
   }
   20% {
-    background-color: red;
+    background-color: rgb(252, 91, 91);;
   }
 }

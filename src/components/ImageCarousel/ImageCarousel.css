@@ -6,6 +6,28 @@
   margin: auto;
   width: 100%;
 }
+.loading {
+  color: white;
+}
+
+.loading span {
+  animation: blink 1s infinite alternate;
+  color: white;
+}
+
+.loading span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%{ opacity: 0};
+  100%{opacity: 1};
+}
+
 
 .carousel__image {
   transition: opacity 0.5s ease-in-out;
@@ -21,13 +43,12 @@
 }
 
 .carousel__button {
-  background-image: url("../../../public/assets/images/Dropdown.svg");
   background-position: center;
   background-repeat: no-repeat;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
+  color: white;
   outline: none;
   cursor: pointer;
   width: 40px;
@@ -37,35 +58,27 @@
 }
 
 .prev {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
 }
 
 .prev:hover {
-  transform: translateX(-2px) rotate(90deg);
+  transform: translateX(-2px) rotate(0deg);
 }
 
 .prev:active {
-  transform: translateX(-5px) rotate(90deg);
+  transform: translateX(-15px) rotate(0deg);
 }
 
 .next {
-  transform: rotate(-90deg);
+  transform: rotate(180deg);
 }
 
 .next:hover {
-  transform: translateX(2px) rotate(-90deg);
+  transform: translateX(2px) rotate(180deg);
 }
 
 .next:active {
-  transform: translateX(5px) rotate(-90deg);
-}
-
-.slide__right{
-  animation: 0.2s ease-in-out right;
-}
-
-.slide__left{
-  animation: 0.2s ease-in-out left;
+  transform: translateX(15px) rotate(180deg);
 }
 
 

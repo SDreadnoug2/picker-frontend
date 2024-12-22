@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 .navigation {
   display: flex;
-  align-items: center;
   color: white;
 }
 
@@ -12,6 +11,7 @@
   gap: 16px;
   padding: 0;
   margin: 0;
+  align-items: center;
 }
 
 .header__link {
@@ -29,8 +29,8 @@
 }
 
 .navigation__image{
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   
 }
 

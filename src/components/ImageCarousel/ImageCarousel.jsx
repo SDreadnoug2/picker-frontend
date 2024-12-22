@@ -1,35 +1,54 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./ImageCarousel.css";
 import isLoadingContext from "../../contexts/isLoadingContext";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const ImageCarousel = ({images}) => {
   const [imageIndex, setImageIndex] = useState(0);
-  const [direction, setDirection] = useState(null);
-  const {setIsLoading} = useContext(isLoadingContext);
-  //. to have a current index with useSelect
+  const {isLoading, setIsLoading} = useContext(isLoadingContext);
+
+  
   const nextImage = () =>{
     setImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    setDirection("right");
   }
-
   const prevImage = () => {
     setImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    setDirection("left");
+  }
+/*
+  useEffect(() => {
+    console.log("images changed")
+    setIsLoading(true);
+    const promises = images.map(src => {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = resolve
+        img.src = src;
+      });
+    })
+
+    Promise.all(promises).then(() => (setIsLoading(false)));
+  },[images]);
+*/
+  console.log(isLoading);
+
+  if(isLoading){
+    return (
+      <span className="loading">Loading<span>.</span><span>.</span><span>.</span></span>
+    )
   }
 
 
   return (
     <div className="carousel">
-      <button onClick={prevImage} className="carousel__button prev"></button>
+      <FontAwesomeIcon onClick={prevImage} className="carousel__button prev" icon={faArrowLeft} />
       <div className="carousel__images_container">
         <img
           src={images[imageIndex]}
           alt={`Slide ${imageIndex + 1}`}
-          className={(direction === "right") ? "carousel__image slide_right": "carousel__image slide_left"}
+          className="carousel__image"
         />
       </div>
- 
-      <button onClick={nextImage} className="carousel__button next"></button>
+      <FontAwesomeIcon onClick={nextImage} className="carousel__button next" icon={faArrowLeft} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ function Navigation() {
           <li className="navigation__item" onClick={logIn}>LOGIN TO STEAM</li>
         ) : (
           <>
-            <li className="navigation__item">{userData.name}</li>
+            <li className="navigation__name">{userData.name}</li>
             <img className="navigation__image" src={userData.avatar}/>
             <li className="navigation__item" onClick={logOut}>LOG OUT</li>
           </>

@@ -7,7 +7,7 @@ function GameFinder({ librarySelection, search, gameInfo, isLoading }) {
   if (isLoading) {
     return (
       <div className="game-finder">
-        <h2 className="game-finder__title">Loading...</h2>
+        <span className="loading">Loading<span>.</span><span>.</span><span>.</span></span>
       </div>
     );
   }
